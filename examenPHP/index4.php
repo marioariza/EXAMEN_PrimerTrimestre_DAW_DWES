@@ -1,8 +1,10 @@
 <?php
-//Includes: Faltan
+
+include "Cliente.php";
+include "Soporte.php";
 
 //instanciamos un par de objetos cliente
-/*
+
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);
 
@@ -33,6 +35,6 @@ $cliente1->devolver(2);
 //alquilo otro soporte
 $cliente1->alquilar($soporte4);
 //listo los elementos alquilados
-$cliente1->listaAlquileres();
+$cliente1->listarAlquileres();
 //este cliente no tiene alquileres
 $cliente2->devolver(2);

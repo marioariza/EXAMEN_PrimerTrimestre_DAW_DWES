@@ -1,5 +1,7 @@
 <?php 
 
+include "Cliente.php";
+
 class Soporte {
     public string $titulo;
     protected string $numero;
@@ -43,11 +45,6 @@ class Soporte {
         return $this->precio;
     }
 
-    /**
-     * Set the value of sueldo
-     *
-     * @return  self
-     */ 
     public function setPrecio($precio)
     {
         $this->precio = $precio;
