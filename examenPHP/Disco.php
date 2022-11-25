@@ -1,5 +1,7 @@
 <?php 
 
+include "Soporte.php";
+
 class Disco extends Soporte {
     public string $idiomas;
     private string $formatPantalla;
