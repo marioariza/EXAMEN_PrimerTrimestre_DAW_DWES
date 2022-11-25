@@ -55,7 +55,7 @@ class Soporte {
         return $this;
     }
 
-    public function getPrecioConIVA() {  
+    public function getPrecioConIVA() : float {  
         return $this->precio + ($this->precio * self::IVA);
     }
 
