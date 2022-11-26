@@ -40,7 +40,7 @@ echo "<br><br>";
 $cliente1->devolver(4);
 //devuelvo un soporte que sí que tiene alquilado
 echo "<br><br>";
-$cliente1->devolver(2);
+$cliente1->devolver(26);
 //alquilo otro soporte
 echo "<br><br>";
 $cliente1->alquilar($soporte4);

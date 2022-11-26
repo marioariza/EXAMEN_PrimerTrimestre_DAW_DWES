@@ -2,7 +2,7 @@
 
 class Soporte {
     public string $titulo;
-    public string $numero;
+    protected string $numero;
     private float $precio;
 
     const IVA = 0.21;

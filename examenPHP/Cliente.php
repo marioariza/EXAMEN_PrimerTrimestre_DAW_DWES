@@ -63,7 +63,8 @@ class Cliente{
             foreach ($this->soportesAlquilados as $sop) {
                 if($sop->getNumero() == $numSoporte) {
                     echo "Soporte devuelto correctamente: ".$numSoporte;
-                    unset($this->soportesAlquilados[$sop]);
+                    $soporte_eliminar = ($sop->getNumero() === $numSoporte);
+                    unset($this->soportesAlquilados[$soporte_eliminar]);
                     $this->numSoportesAlquilados--;
                     $alquilado=true;
                     break;
@@ -71,7 +72,7 @@ class Cliente{
             }
             
             if(!$alquilado)
-            echo "El cliente no tiene alquilado ese soporte: ".$numSoporte;
+            echo "El cliente no tiene alquilado el soporte ".$numSoporte;
         } else {
             echo "El cliente no tiene soportes alquilados.";
         }
@@ -91,9 +92,9 @@ class Cliente{
 
     }
 
-    // public function muestraResumen() : void {
-    //     echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->titulo.', Número = '.$this->numero.', Precio = '.$this->precio.', Precio con IVA = '.$this->getPrecioConIVA();
-    // }
+    public function muestraResumen() : void {
+        echo '<br><br><b>Resumen:</b><br>'.'Nombre = '.$this->nombre.', Número = '.$this->numero.', Número soportes alquilados = '.$this->numSoportesAlquilados;
+    }
 }
 
 ?>
