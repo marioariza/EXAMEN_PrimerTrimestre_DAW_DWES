@@ -1,21 +1,18 @@
 <?php 
 
-include "Soporte.php";
-
-class Cliente {
+class Cliente{
     public string $nombre;
     private int $numero;
-    private array $soportesAlquilados;
+    private array $soportesAlquilados = [];
 
-    private int $numSoportesAlquilados;
+    private int $numSoportesAlquilados = 0;
 
-    private int $maxAlquilerConcurrente;
+    private int $maxAlquilerConcurrente  = 3;
 
-    public function __construct($nombre, $numero, $maxAlquilerConcurrente = 3)
+    public function __construct($nombre, $numero)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
-        self::$maxAlquilerConcurrente = $maxAlquilerConcurrente;
     }
  
     public function getNumero()
@@ -37,44 +34,66 @@ class Cliente {
 
     public function tieneAlquilado(Soporte $s) {
 
-        foreach($this->soportesAlquilados as $sop_alq) {
-            if (in_array($sop_alq->numero, $this->soportesAlquilados) == $s->getNumero()) {
-                return true;
-            } else {
-                return false;
-            }
+        if (in_array($s, $this->soportesAlquilados)) {
+            return true;
+        } else {
+            return false;
         }
-
     }
 
     public function alquilar(Soporte $s) {
 
         if ($this->tieneAlquilado($s) == true) {
-            echo "Hola";
-        } else {
-            echo "Heeeola";
+            echo "Este soporte ya está alquilado.";
+        } else if ($this->tieneAlquilado($s) == false && $this->getNumSoportesAlquilados() >= 3) {
+            echo "Este soporte no está alquilado pero no lo puedes alquilar ya que el número de soportes alquilados a llegado a su tope.";
+        } else if ($this->tieneAlquilado($s) == false && $this->getNumSoportesAlquilados() < 3) {
+            $this->numSoportesAlquilados++;
+            echo "Alquiler realizado. Número de alquileres: ".$this->numSoportesAlquilados;
+            array_push($this->soportesAlquilados, $s);
         }
 
     }
 
-    public function devolver (int $numSoporte) : bool {
+    public function devolver (int $numSoporte) {
+        $alquilado = false;
 
+        if($this->numSoportesAlquilados > 0) {
+            
+            foreach ($this->soportesAlquilados as $sop) {
+                if($sop->getNumero() == $numSoporte) {
+                    echo "Soporte devuelto correctamente: ".$numSoporte;
+                    unset($this->soportesAlquilados[$sop]);
+                    $this->numSoportesAlquilados--;
+                    $alquilado=true;
+                    break;
+                }
+            }
+            
+            if(!$alquilado)
+            echo "El cliente no tiene alquilado ese soporte: ".$numSoporte;
+        } else {
+            echo "El cliente no tiene soportes alquilados.";
+        }
     }
 
     public function listarAlquileres() : void {  
-
-        $alquiler = [];
-
-        for ($i = 0; $i < count($this->soportesAlquilados); $i++) {
-            $alquiler[$i] = $this->soportesAlquilados;
-            echo $alquiler[$i];
+        echo "<b>Listado alquileres:</b>";
+        echo "<br><br>";
+        echo "El cliente tiene alquilado ".$this->numSoportesAlquilados. " soportes.";
+        echo "<br><br>";
+        foreach ($this->soportesAlquilados as $sp) {
+            echo $sp->getTitulo()."<br>";
+            echo $sp->getNumero()."<br>";
+            echo $sp->getPrecio()."<br>";
+            echo "<br>";
         }
-        echo $alquiler[$i];
+
     }
 
-    public function muestraResumen() : void {
-        echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->titulo.', Número = '.$this->numero.', Precio = '.$this->precio.', Precio con IVA = '.$this->getPrecioConIVA();
-    }
+    // public function muestraResumen() : void {
+    //     echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->titulo.', Número = '.$this->numero.', Precio = '.$this->precio.', Precio con IVA = '.$this->getPrecioConIVA();
+    // }
 }
 
 ?>

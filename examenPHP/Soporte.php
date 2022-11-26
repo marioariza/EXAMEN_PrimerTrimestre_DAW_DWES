@@ -1,10 +1,8 @@
 <?php 
 
-include "Cliente.php";
-
 class Soporte {
     public string $titulo;
-    protected string $numero;
+    public string $numero;
     private float $precio;
 
     const IVA = 0.21;
