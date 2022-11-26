@@ -1,6 +1,6 @@
 <?php 
 
-// require('Soporte.php');
+require('Soporte.php');
 
 class Juego extends Soporte {
     public string $consola;

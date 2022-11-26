@@ -1,6 +1,7 @@
 <?php 
 
-class Cliente{
+require('VideoClub.php');
+class Cliente extends VideoClub{
     public string $nombre;
     private int $numero;
     private array $soportesAlquilados = [];
@@ -9,10 +10,11 @@ class Cliente{
 
     private int $maxAlquilerConcurrente  = 3;
 
-    public function __construct($nombre, $numero)
+    public function __construct($nombre, $numero, $maxAlquilerConcurrente)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
+        $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
     }
  
     public function getNumero()
@@ -62,7 +64,7 @@ class Cliente{
             
             foreach ($this->soportesAlquilados as $sop) {
                 if($sop->getNumero() == $numSoporte) {
-                    echo "Soporte devuelto correctamente: ".$numSoporte;
+                    echo "El soporte ".$numSoporte." ha sido devuelto correctamente.";
                     $soporte_eliminar = ($sop->getNumero() === $numSoporte);
                     unset($this->soportesAlquilados[$soporte_eliminar]);
                     $this->numSoportesAlquilados--;
@@ -84,9 +86,7 @@ class Cliente{
         echo "El cliente tiene alquilado ".$this->numSoportesAlquilados. " soportes.";
         echo "<br><br>";
         foreach ($this->soportesAlquilados as $sp) {
-            echo $sp->getTitulo()."<br>";
-            echo $sp->getNumero()."<br>";
-            echo $sp->getPrecio()."<br>";
+            echo $sp->getTitulo()." - N: ".$sp->getNumero()."<br>";
             echo "<br>";
         }
 

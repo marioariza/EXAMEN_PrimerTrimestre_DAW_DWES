@@ -1,6 +1,7 @@
 <?php 
 
-class Soporte {
+require('VideoClub.php');
+class Soporte extends VideoClub{
     public string $titulo;
     protected string $numero;
     private float $precio;

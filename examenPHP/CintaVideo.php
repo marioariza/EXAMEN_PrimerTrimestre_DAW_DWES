@@ -1,5 +1,7 @@
 <?php 
 
+require('Soporte.php');
+
 class CintaVideo extends Soporte {
     private int $duracion;
 
