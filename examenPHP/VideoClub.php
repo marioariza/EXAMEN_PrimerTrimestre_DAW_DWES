@@ -119,11 +119,11 @@ class VideoClub {
         } 
     }
 
-    public function alquilaSocioProducto ($numero_socio,$numero_producto){ 
+    public function alquilaSocioProducto (int $numero_socio,int $numero_producto) { 
         if (is_null($this->socios[$numero_socio])){ 
-           echo "<p>No existe ese socio"; 
+           echo "No existe ese socio"; 
         }elseif(is_null($this->productos[$numero_producto])){ 
-           echo "<p>No existe ese soporte"; 
+           echo "No existe ese soporte"; 
         }else{ 
            $this->socios[$numero_socio]->alquila($this->productos[$numero_producto]); 
         } 
