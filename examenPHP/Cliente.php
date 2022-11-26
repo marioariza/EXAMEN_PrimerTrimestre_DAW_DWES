@@ -35,16 +35,25 @@ class Cliente {
         return $this->numSoportesAlquilados;
     }
 
-    public function tieneAlquilado(Soporte $s) : bool {
+    public function tieneAlquilado(Soporte $s) {
+
+        foreach($this->soportesAlquilados as $sop_alq) {
+            if (in_array($sop_alq->numero, $this->soportesAlquilados) == $s->getNumero()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
     }
 
-    public function alquilar (Soporte $s) : bool {
+    public function alquilar(Soporte $s) {
 
-        tieneAlquilado($s);
-        $s->
-
-
+        if ($this->tieneAlquilado($s) == true) {
+            echo "Hola";
+        } else {
+            echo "Heeeola";
+        }
 
     }
 
@@ -58,11 +67,9 @@ class Cliente {
 
         for ($i = 0; $i < count($this->soportesAlquilados); $i++) {
             $alquiler[$i] = $this->soportesAlquilados;
-            $alq = implode(', ', $alquiler[$i]);
+            echo $alquiler[$i];
         }
-        
-        echo $alq;
-        
+        echo $alquiler[$i];
     }
 
     public function muestraResumen() : void {
