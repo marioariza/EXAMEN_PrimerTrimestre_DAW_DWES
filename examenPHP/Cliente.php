@@ -8,13 +8,13 @@ class Cliente extends VideoClub{
 
     private int $numSoportesAlquilados = 0;
 
-    private int $maxAlquilerConcurrente  = 3;
+    private int $maxAlquilerConcurrente;
 
-    public function __construct($nombre, $numero, $maxAlquilerConcurrente)
+    public function __construct($nombre, $numero)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
-        $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
+        $this->maxAlquilerConcurrente = 3;
     }
  
     public function getNumero()

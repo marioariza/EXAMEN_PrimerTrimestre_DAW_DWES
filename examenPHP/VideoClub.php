@@ -92,7 +92,7 @@ class VideoClub {
     }
 
     public function incluirJuego (string $titulo, float $precio, string $consola, int $minJ, int $maxJ) {  
-        $juego_nuevo = new Juego($titulo, $this->numProductos, $precio, $consola, $minJ, $maxJ); 
+        $juego_nuevo = new Juego($titulo, $this->getNumProductos(), $precio, $consola, $minJ, $maxJ); 
         $this->incluir_producto($juego_nuevo); 
     }
 
