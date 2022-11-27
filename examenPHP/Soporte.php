@@ -1,7 +1,7 @@
 <?php 
 
-require('VideoClub.php');
-class Soporte extends VideoClub{
+include_once 'VideoClub.php';
+abstract class Soporte implements Resumible {
     public string $titulo;
     protected string $numero;
     private float $precio;
@@ -52,7 +52,8 @@ class Soporte extends VideoClub{
     }
 
     public function getPrecioConIVA() : float {  
-        return $this->precio + ($this->precio * self::IVA);
+        return number_format($this->precio + ($this->precio * self::IVA), 2);
+        
     }
 
     public function muestraResumen() : void {

@@ -1,7 +1,6 @@
 <?php 
 
-require('VideoClub.php');
-class Cliente extends VideoClub{
+class Cliente {
     public string $nombre;
     private int $numero;
     private array $soportesAlquilados = [];

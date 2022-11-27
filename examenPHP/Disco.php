@@ -1,6 +1,6 @@
 <?php 
 
-require('Soporte.php'); 
+include_once 'Soporte.php';
 
 class Disco extends Soporte {
     public string $idiomas;

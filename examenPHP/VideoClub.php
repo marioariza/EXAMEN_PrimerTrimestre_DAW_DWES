@@ -8,11 +8,11 @@ class VideoClub {
     private int $numSocios;
 
     function __construct($nombre){ 
-        $this->nombre=$nombre; 
-        $this->productos=array(); 
-        $this->numProductos=0; 
-        $this->socios=array(); 
-        $this->numSocios=0; 
+        $this->nombre = $nombre; 
+        $this->productos = array(); 
+        $this->numProductos = 0; 
+        $this->socios = array(); 
+        $this->numSocios = 0; 
     }
 
     public function getNombre()
@@ -82,12 +82,12 @@ class VideoClub {
     }
 
     public function incluirCintaVideo (string $titulo, float $precio, int $duracion) {  
-        $cinta_video_nueva = new CintaVideo($titulo, $this->numProductos, $precio, $duracion); 
+        $cinta_video_nueva = new CintaVideo($titulo, $this->getNumProductos(), $precio, $duracion); 
         $this->incluir_producto($cinta_video_nueva); 
     }
 
     public function incluirDvd (string $titulo, float $precio, string $idiomas, string $pantalla) {  
-        $dvd_nuevo = new Disco($titulo, $this->numProductos, $precio, $idiomas, $pantalla); 
+        $dvd_nuevo = new Disco($titulo, $this->getNumProductos(), $precio, $idiomas, $pantalla); 
         $this->incluir_producto($dvd_nuevo); 
     }
 
@@ -97,9 +97,9 @@ class VideoClub {
     }
 
     public function incluirSocio (string $nombre, int $maxAlquileresConcurrentes = 3) {  
-        $socio_nuevo = new Cliente($nombre,$this->numSocios,$maxAlquileresConcurrentes); 
-        $this->socios[$this->numSocios]=$socio_nuevo; 
-        echo "<p>Incluido socio " . $this->numSocios; 
+        $socio_nuevo = new Cliente($nombre,$this->getNumSocios(),$maxAlquileresConcurrentes); 
+        $this->socios[$this->getNumSocios()]=$socio_nuevo; 
+        echo "<p>Incluido socio " . $this->getNumSocios(); 
         $this->numSocios++; 
     }
 
@@ -107,7 +107,7 @@ class VideoClub {
         echo "<p>Listado de los " . $this->numProductos . " productos disponibles:"; 
         for ($i=0;$i<$this->numProductos;$i++){ 
            echo "<p>"; 
-           $this->productos[$i]->imprime_caracteristicas(); 
+           $this->getProductos()[$i]->muestraResumen(); 
         } 
     } 
      
@@ -115,17 +115,17 @@ class VideoClub {
         echo "<p>Listado de $this->numSocios socios del videoclub:"; 
         for ($i=0;$i<$this->numSocios;$i++){ 
            echo "<p>"; 
-           $this->socios[$i]->imprime_caracteristicas(); 
+           $this->getSocios()[$i]->muestraResumen(); 
         } 
     }
 
     public function alquilaSocioProducto (int $numero_socio,int $numero_producto) { 
-        if (is_null($this->socios[$numero_socio])){ 
+        if (is_null($this->getSocios()[$numero_socio])){ 
            echo "No existe ese socio"; 
-        }elseif(is_null($this->productos[$numero_producto])){ 
+        }elseif(is_null($this->getProductos()[$numero_producto])){ 
            echo "No existe ese soporte"; 
         }else{ 
-           $this->socios[$numero_socio]->alquila($this->productos[$numero_producto]); 
+           $this->getSocios()[$numero_socio]->alquilar($this->getProductos()[$numero_producto]); 
         } 
     }
 }
