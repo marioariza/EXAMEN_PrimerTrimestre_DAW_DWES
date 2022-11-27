@@ -3,6 +3,8 @@
 include_once 'Resumible.php'; // No hace falta que las demás clases implemente el interfaz ya que lo implente la clase Padre.
 include_once 'VideoClub.php';
 
+// Al crear la clase Abstract no nos cambiará nada excepto en el index1 que no nos dejará crear soportes.
+
 class Soporte implements Resumible {
     public string $titulo;
     protected string $numero;
