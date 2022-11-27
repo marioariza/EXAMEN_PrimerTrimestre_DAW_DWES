@@ -23,7 +23,7 @@ class CintaVideo extends Soporte {
         return $this;
     }
 
-    public function muestraResumen() : void {
+    public function muestraResumen() {
         echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->getTitulo().', Número = '.$this->getNumero().', Precio = '.$this->getPrecio().', Precio con IVA = '.$this->getPrecioConIVA().', Duración = '.$this->duracion;
     }
 }

@@ -2,7 +2,7 @@
 
 include_once 'Soporte.php';
 
-class Juego extends Soporte {
+class Juego extends Soporte implements Resumible {
     public string $consola;
 
     private int $minNumJugadores;
@@ -63,7 +63,7 @@ class Juego extends Soporte {
         }
     }
 
-    public function muestraResumen() : void {
+    public function muestraResumen() {
         echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->getTitulo().', Número = '.$this->getNumero().', Precio = '.$this->getPrecio().', Precio con IVA = '.$this->getPrecioConIVA().', Consola = '.$this->consola.', Número mínimo jugadores = '.$this->minNumJugadores.', Número máximo jugadores = '.$this->maxNumJugadores;
     }
 }

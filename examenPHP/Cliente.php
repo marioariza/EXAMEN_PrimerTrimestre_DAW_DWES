@@ -82,17 +82,17 @@ class Cliente {
     public function listarAlquileres() : void {  
         echo "<b>Listado alquileres:</b>";
         echo "<br><br>";
-        echo "El cliente tiene alquilado ".$this->numSoportesAlquilados. " soportes.";
+        echo "El cliente tiene alquilado ".$this->numSoportesAlquilados. " soportes:";
         echo "<br><br>";
         foreach ($this->soportesAlquilados as $sp) {
-            echo $sp->getTitulo()." - N: ".$sp->getNumero()."<br>";
+            echo "- ".$sp->getTitulo()." - N: ".$sp->getNumero()."<br>";
             echo "<br>";
         }
 
     }
 
-    public function muestraResumen() : void {
-        echo '<br><br><b>Resumen:</b><br>'.'Nombre = '.$this->nombre.', Número = '.$this->numero.', Número soportes alquilados = '.$this->numSoportesAlquilados;
+    public function muestraResumen() {
+        echo '<br><b>Resumen:</b><br>'.'Nombre = '.$this->nombre.', Número = '.$this->numero.', Número soportes alquilados = '.$this->numSoportesAlquilados;
     }
 }
 

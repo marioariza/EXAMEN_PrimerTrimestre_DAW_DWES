@@ -1,14 +1,16 @@
 <?php 
 
+include_once 'Resumible.php'; // No hace falta que las demás clases implemente el interfaz ya que lo implente la clase Padre.
 include_once 'VideoClub.php';
-abstract class Soporte implements Resumible {
+
+class Soporte implements Resumible {
     public string $titulo;
     protected string $numero;
     private float $precio;
 
     const IVA = 0.21;
 
-    public function __construct($titulo, $numero, $precio)
+    public  function __construct($titulo, $numero, $precio)
     {
         $this->titulo = $titulo;
         $this->numero = $numero;
@@ -56,8 +58,8 @@ abstract class Soporte implements Resumible {
         
     }
 
-    public function muestraResumen() : void {
-        echo '<br><br><b>Resumen:</b><br>'.'Título = '.$this->titulo.', Número = '.$this->numero.', Precio = '.$this->precio.', Precio con IVA = '.$this->getPrecioConIVA();
+    public function muestraResumen() {
+        echo '<br><b>Resumen:</b><br>'.'Título = '.$this->titulo.', Número = '.$this->numero.', Precio = '.$this->precio.', Precio con IVA = '.$this->getPrecioConIVA();
     }
 }
 
