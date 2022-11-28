@@ -122,11 +122,11 @@ class VideoClub {
 
     public function alquilaSocioProducto (int $numero_socio,int $numero_producto) { 
         if (is_null($this->getSocios()[$numero_socio])){ 
-           $error = new ClienteNoEncontrado;
-           $error->ClienteNoEnc();
+            $error = new ClienteNoEncontrado;
+            $error->ClienteNoEnc();
         }elseif(is_null($this->getProductos()[$numero_producto])){ 
-           $error = new SoporteNoEncontrado();
-           $error->SoporteNoEnc();
+            $error = new SoporteNoEncontrado();
+            $error->SoporteNoEnc();
         }else{ 
             $this->getSocios()[$numero_socio]->alquilar($this->getProductos()[$numero_producto]); 
         }
