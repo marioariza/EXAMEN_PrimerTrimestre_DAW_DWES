@@ -1,5 +1,6 @@
 <?php 
 
+
 class VideoClub {
     private string $nombre;
     private array $productos;
@@ -121,12 +122,16 @@ class VideoClub {
 
     public function alquilaSocioProducto (int $numero_socio,int $numero_producto) { 
         if (is_null($this->getSocios()[$numero_socio])){ 
-           echo "No existe ese socio"; 
+           $error = new ClienteNoEncontrado;
+           $error->ClienteNoEnc();
         }elseif(is_null($this->getProductos()[$numero_producto])){ 
-           echo "No existe ese soporte"; 
+           $error = new SoporteNoEncontrado();
+           $error->SoporteNoEnc();
         }else{ 
-           $this->getSocios()[$numero_socio]->alquilar($this->getProductos()[$numero_producto]); 
-        } 
+            $this->getSocios()[$numero_socio]->alquilar($this->getProductos()[$numero_producto]); 
+        }
+        
+        return $this;
     }
 }
 

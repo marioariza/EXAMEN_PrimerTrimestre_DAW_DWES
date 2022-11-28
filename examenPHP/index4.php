@@ -22,28 +22,28 @@ $soporte4 = new Disco("El Imperio Contraataca", 4, 3, "es,en","16:9");
 
 //alquilo algunos soportes
 echo "<br><br>";
-$cliente1->alquilar($soporte1);
-echo "<br><br>";
-$cliente1->alquilar($soporte2);
-echo "<br><br>";
-$cliente1->alquilar($soporte3);
+$cliente1->alquilar($soporte1)->alquilar($soporte2)->alquilar($soporte3);
+// echo "<br><br>";
+// $cliente1->alquilar($soporte2);
+// echo "<br><br>";
+// $cliente1->alquilar($soporte3);
 
 //voy a intentar alquilar de nuevo un soporte que ya tiene alquilado
 echo "<br>--------------------------<br>";
-$cliente1->alquilar($soporte1);
+$cliente1->alquilar($soporte1)->alquilar($soporte4)->devolver(4)->devolver(23)->alquilar($soporte4);
 //el cliente tiene 3 soportes en alquiler como máximo
 //este soporte no lo va a poder alquilar
-echo "<br><br>";
-$cliente1->alquilar($soporte4);
+// echo "<br><br>";
+// $cliente1->alquilar($soporte4);
 //este soporte no lo tiene alquilado
-echo "<br><br>";
-$cliente1->devolver(4);
+// echo "<br><br>";
+// $cliente1->devolver(4);
 //devuelvo un soporte que sí que tiene alquilado
-echo "<br><br>";
-$cliente1->devolver(23);
+// echo "<br><br>";
+// $cliente1->devolver(23);
 //alquilo otro soporte
-echo "<br><br>";
-$cliente1->alquilar($soporte4);
+// echo "<br><br>";
+// $cliente1->alquilar($soporte4);
 //listo los elementos alquilados
 echo "<br>--------------------------<br>";
 $cliente1->listarAlquileres();

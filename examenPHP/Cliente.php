@@ -1,5 +1,8 @@
 <?php 
 
+include 'util/SoporteYaAlquiladoException.php';
+include 'util/CupoSuperadoException.php';
+
 class Cliente {
     public string $nombre;
     private int $numero;
@@ -45,14 +48,18 @@ class Cliente {
     public function alquilar(Soporte $s) {
 
         if ($this->tieneAlquilado($s) == true) {
-            echo "Este soporte ya está alquilado.";
+            $error = new SoporteYaAlquilado;
+            $error->YaAlquilado();
         } else if ($this->tieneAlquilado($s) == false && $this->getNumSoportesAlquilados() >= 3) {
-            echo "Este soporte no está alquilado pero no lo puedes alquilar ya que el número de soportes alquilados a llegado a su tope.";
+            $error = new CupoSuperado;
+            $error->CupoSup();
         } else if ($this->tieneAlquilado($s) == false && $this->getNumSoportesAlquilados() < 3) {
             $this->numSoportesAlquilados++;
-            echo "Alquiler realizado. Número de alquileres: ".$this->numSoportesAlquilados;
+            echo "Alquiler realizado. Número de alquileres: ".$this->numSoportesAlquilados. "<br><br>";
             array_push($this->soportesAlquilados, $s);
         }
+
+        return $this;
 
     }
 
@@ -63,7 +70,7 @@ class Cliente {
             
             foreach ($this->soportesAlquilados as $sop) {
                 if($sop->getNumero() == $numSoporte) {
-                    echo "El soporte ".$numSoporte." ha sido devuelto correctamente.";
+                    echo "El soporte ".$numSoporte." ha sido devuelto correctamente. <br><br>";
                     $soporte_eliminar = ($sop->getNumero() === $numSoporte);
                     unset($this->soportesAlquilados[$soporte_eliminar]);
                     $this->numSoportesAlquilados--;
@@ -73,10 +80,12 @@ class Cliente {
             }
             
             if(!$alquilado)
-            echo "El cliente no tiene alquilado el soporte ".$numSoporte;
+            echo "El cliente no tiene alquilado el soporte ".$numSoporte. "<br><br>";
         } else {
-            echo "El cliente no tiene soportes alquilados.";
+            echo "El cliente no tiene soportes alquilados. <br><br>";
         }
+
+        return $this;
     }
 
     public function listarAlquileres() : void {  
